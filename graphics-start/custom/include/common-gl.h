@@ -16,7 +16,7 @@ using namespace std;
 
 void processInput(GLFWwindow* window);
 void framebufferSizeCallback(GLFWwindow* window, int width, int height);
-GLFWwindow* init();
+GLFWwindow* myOpenGLInit(unsigned width, unsigned height, const char* title);
 void checkShaderCompile(unsigned int shader);
 void checkProgramLink(unsigned int shaderProgram);
 
