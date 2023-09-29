@@ -39,10 +39,8 @@ public:
         std::string typeString = "";
         switch (type) {
             case CHECK_TYPE::PROGRAM: typeString = "PROGRAM"; break;
-            case CHECK_TYPE::VERTEX: typeString = "PROGRAM"; break;
-            case CHECK_TYPE::FRAGMENT: typeString = "PROGRAM"; break;
-            default:
-                break;
+            case CHECK_TYPE::VERTEX: typeString = "VERTEX"; break;
+            case CHECK_TYPE::FRAGMENT: typeString = "FRAGMENT"; break;
         }
         
         out << typeString;

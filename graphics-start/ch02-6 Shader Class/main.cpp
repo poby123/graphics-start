@@ -64,14 +64,7 @@ int main()
     
     // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens.
     // so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
-    glBindVertexArray(0);
-    
-    
-    // uncomment this call to draw in wireframe polygons.
-    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    
-    // It is called when window is resized.
-    glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+//    glBindVertexArray(0);
     
     while (!glfwWindowShouldClose(window))
     {
@@ -84,8 +77,6 @@ int main()
         glBindVertexArray(VAO);
         
         glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-        
-        // glBindVertexArray(0); // no need to unbind it every time
         
         // double buffering & poll IO events
         glfwSwapBuffers(window);

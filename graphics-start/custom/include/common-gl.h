@@ -70,6 +70,9 @@ GLFWwindow* myOpenGLInit(unsigned width, unsigned height, const char* title = "L
         return NULL;
     }
     
+    // It is called when window is resized.
+    glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+    
     return window;
 }
 
