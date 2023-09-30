@@ -7,10 +7,10 @@
 
 #include "common-gl.h"
 #include <my/shader_s.h>
+#include <root-path.h>
 
-const std::string projectPath = "/Users/wonjulee/Desktop/workspace/study/graphics-start/graphics-start/ch02-6 Shader Class/";
-const std::string vertexShaderPath = std::string(projectPath + "shader.vs");
-const std::string fragmentShaderPath = std::string(projectPath + "shader.fs");
+const std::string vertexShaderPath = std::string(srcPath + "/ch02-6 Shader Class/shader.vs");
+const std::string fragmentShaderPath = std::string(srcPath + "/ch02-6 Shader Class/shader.fs");
 
 int main()
 {
