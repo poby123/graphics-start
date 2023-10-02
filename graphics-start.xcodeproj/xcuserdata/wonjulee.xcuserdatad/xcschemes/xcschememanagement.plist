@@ -54,6 +54,16 @@
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
+		<key>ch05-2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>ch05.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>graphics-start.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -75,6 +85,11 @@
 			<true/>
 		</dict>
 		<key>11CC799A2AC7CF6A00D65B47</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>11F308B52ACAF1ED00766032</key>
 		<dict>
 			<key>primary</key>
 			<true/>
