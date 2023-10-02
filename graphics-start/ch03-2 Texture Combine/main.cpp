@@ -2,7 +2,7 @@
 //  main.cpp
 //  graphics-start
 //
-//  Created by wonju Lee on 2023/09/30.
+//  Created by wonju Lee on 2023/10/02.
 //
 #define STB_IMAGE_IMPLEMENTATION
 
@@ -12,8 +12,8 @@
 #include <my/path.h>
 
 const std::string texturePath = std::string(projectPath + "/resources/textures");
-const std::string vertexShaderPath = std::string(srcPath + "/ch03 Texture/shader.vs");
-const std::string fragmentShaderPath = std::string(srcPath + "/ch03 Texture/shader.fs");
+const std::string vertexShaderPath = std::string(srcPath + "/ch03-2 Texture Combine/shader.vs");
+const std::string fragmentShaderPath = std::string(srcPath + "/ch03-2 Texture Combine/shader.fs");
 
 int main()
 {
@@ -65,17 +65,23 @@ int main()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
     
-    unsigned int texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
     
-    // wrapping texture
+    /**
+        Textures
+     */
+    unsigned int texture1, texture2;
+    
+    // Texture1: load container image texture
+    glGenTextures(1, &texture1);
+    glBindTexture(GL_TEXTURE_2D, texture1);
+    
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
     int width, height, nrChannels;
+    
     const std::string containerTexturePath = texturePath + "/container.jpg";
     unsigned char *data = stbi_load(containerTexturePath.c_str(), &width, &height, &nrChannels, 0);
     
@@ -90,22 +96,54 @@ int main()
     stbi_image_free(data);
     
     
+    // Texture2: load smile image texture
+    glGenTextures(1, &texture2);
+    glBindTexture(GL_TEXTURE_2D, texture2);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    stbi_set_flip_vertically_on_load(true);
+    const std::string smileTexturePath = texturePath + "/awesomeface.png";
+    data = stbi_load(smileTexturePath.c_str(), &width, &height, &nrChannels, 0);
+    
+    if(data)
+    {
+        // awesomeface.png has an alpha channel, so make sure to tell OpenGL the data type is of GL_RGBAs
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else{
+        std::cout << "Failed to load texture";
+    }
+    stbi_image_free(data);
+    
+    
+    ourShader.use(); // activate shader is required before set uniforms.
+    ourShader.setInt("texture1", 0);
+    ourShader.setInt("texture2", 1);
+    
+    
     while (!glfwWindowShouldClose(window))
     {
+        // input
         processInput(window);
         
+        // clear
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        // The default texture number is 0
+        // bind texture
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glBindTexture(GL_TEXTURE_2D, texture1);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture2);
         
+        // render container
         ourShader.use();
-        
         glBindVertexArray(VAO);
-        
-        // this pass texture uniform to fragment shader.
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         
         // double buffering & poll IO events
