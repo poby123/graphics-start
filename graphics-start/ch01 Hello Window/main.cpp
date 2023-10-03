@@ -11,7 +11,7 @@
 using namespace std;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow* window);
+void handleEscOnClose(GLFWwindow* window);
 
 int main()
 {
@@ -47,7 +47,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
         
         // check input per frame
-        processInput(window);
+        handleEscOnClose(window);
         
         // Double buffer swapping.
         glfwSwapBuffers(window);
@@ -67,7 +67,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height){
 }
 
 /** When a user press ESC, make the window close.*/
-void processInput(GLFWwindow* window){
+void handleEscOnClose(GLFWwindow* window){
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS){
         glfwSetWindowShouldClose(window, true);
     }

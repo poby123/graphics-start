@@ -175,7 +175,7 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         // input
-        processInput(window);
+        handleEscOnClose(window);
         
         // clear
         glEnable(GL_DEPTH_TEST);

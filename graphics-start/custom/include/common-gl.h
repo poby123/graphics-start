@@ -14,7 +14,7 @@
 #include<iostream>
 using namespace std;
 
-void processInput(GLFWwindow* window);
+void handleEscOnClose(GLFWwindow* window);
 void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 GLFWwindow* myOpenGLInit(unsigned width, unsigned height, const char* title);
 void checkShaderCompile(unsigned int shader);
@@ -27,7 +27,7 @@ void checkProgramLink(unsigned int shaderProgram);
 /**
  Default Input Callback function for closing window when user press the ESC key.
  */
-void processInput(GLFWwindow* window){
+void handleEscOnClose(GLFWwindow* window){
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS){
         glfwSetWindowShouldClose(window, true);
     }

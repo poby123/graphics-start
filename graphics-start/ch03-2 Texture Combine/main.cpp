@@ -129,7 +129,7 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         // input
-        processInput(window);
+        handleEscOnClose(window);
         
         // clear
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
