@@ -74,6 +74,21 @@
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
+		<key>ch07-2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
+		<key>ch07-3.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
+		<key>ch07-4.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
 		<key>ch07.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
