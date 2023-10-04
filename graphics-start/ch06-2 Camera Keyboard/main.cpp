@@ -20,8 +20,7 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
 void processInput(GLFWwindow *window);
 
 const std::string texturePath = std::string(projectPath + "/resources/textures");
-const std::string vertexShaderPath = std::string(srcPath + "/ch06-2 Camera Keyboard/shader.vs");
-const std::string fragmentShaderPath = std::string(srcPath + "/ch06-2 Camera Keyboard/shader.fs");
+const std::string currentPath = std::string(srcPath + "/ch06-2 Camera Keyboard");
 
 // camera
 glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
@@ -113,7 +112,7 @@ int main()
         glm::vec3(-1.3f,  1.0f, -1.5f)
     };
     
-    Shader ourShader(vertexShaderPath.c_str(), fragmentShaderPath.c_str());
+    Shader ourShader(currentPath + "/shader.vs", currentPath + "/shader.fs");
     
     unsigned int VBO, VAO, EBO;
     
